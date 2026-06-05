@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://c32xpx5xlbf4u"]
+
+[ext_resource type="Script" path="res://scenes/MainUI.gd"]
+[ext_resource type="Script" path="res://scenes/TodoManager.gd"]
+[ext_resource type="Theme" uid="uid://b7yj8vvgr3hs1"]
+
+[node name="MainUI" type="Control"]
+layout_mode=3
+anchors_left=0.0
+anchors_top=0.0
+anchors_right=1.0
+anchors_bottom=1.0
+script=ExtResource("res://scenes/MainUI.gd")
+
+[node name="TodoManager" type="Node" parent="."]
+script=ExtResource("res://scenes/TodoManager.gd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode=1
+anchors_left=0.0
+anchors_top=0.0
+anchors_right=1.0
+anchors_bottom=1.0
+theme_override_constants/separation=10
+offset_left=10.0
+offset_top=10.0
+offset_right=-10.0
+offset_bottom=-10.0
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode=2
+text="My Todo List"
+theme_override_font_sizes/font_size=32
+theme_override_colors/font_color=Color(0.1, 0.1, 0.2, 1)
+
+[node name="InputContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode=2
+theme_override_constants/separation=5
+
+[node name="TodoInput" type="LineEdit" parent="VBoxContainer/InputContainer"]
+layout_mode=2
+size_flags_horizontal=3
+placeholder_text="Add a new task..."
+theme_override_font_sizes/font_size=16
+
+[node name="AddButton" type="Button" parent="VBoxContainer/InputContainer"]
+layout_mode=2
+size_flags_horizontal=0
+text="Add"
+theme_override_font_sizes/font_size=16
+custom_minimum_size=Vector2(80, 0)
+
+[node name="ControlsContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode=2
+theme_override_constants/separation=5
+
+[node name="ClearCompletedButton" type="Button" parent="VBoxContainer/ControlsContainer"]
+layout_mode=2
+size_flags_horizontal=1
+text="Clear Completed"
+theme_override_font_sizes/font_size=12
+
+[node name="DeleteAllButton" type="Button" parent="VBoxContainer/ControlsContainer"]
+layout_mode=2
+size_flags_horizontal=1
+text="Delete All"
+theme_override_font_sizes/font_size=12
+
+[node name="CountLabel" type="Label" parent="VBoxContainer/ControlsContainer"]
+layout_mode=2
+size_flags_horizontal=1
+text="Tasks: 0"
+theme_override_font_sizes/font_size=12
+alignment=2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode=2
+size_flags_vertical=3
+
+[node name="TodoList" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode=2
+size_flags_horizontal=3
+theme_override_constants/separation=5
+
+[node name="EmptyState" type="Label" parent="VBoxContainer/ScrollContainer/TodoList"]
+layout_mode=2
+text="No tasks yet. Add one to get started!"
+alignment=1
+theme_override_font_sizes/font_size=16
+theme_override_colors/font_color=Color(0.5, 0.5, 0.5, 1)
+
+[connection signal="text_submitted" from="VBoxContainer/InputContainer/TodoInput" to="." method="_on_todo_input_submitted"]
+[connection signal="pressed" from="VBoxContainer/InputContainer/AddButton" to="." method="_on_add_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ControlsContainer/ClearCompletedButton" to="." method="_on_clear_completed_pressed"]
+[connection signal="pressed" from="VBoxContainer/ControlsContainer/DeleteAllButton" to="." method="_on_delete_all_pressed"]

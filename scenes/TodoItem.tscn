@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyu1eev6kvqu1"]
+
+[ext_resource type="Script" path="res://scenes/TodoItem.gd"]
+
+[node name="TodoItem" type="PanelContainer"]
+custom_minimum_size=Vector2(0, 50)
+script=ExtResource("res://scenes/TodoItem.gd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode=2
+theme_override_constants/separation=10
+
+[node name="CheckBox" type="CheckBox" parent="HBoxContainer"]
+layout_mode=2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode=2
+size_flags_horizontal=3
+text="Task"
+theme_override_font_sizes/font_size=16
+vertical_alignment=1
+
+[node name="DeleteButton" type="Button" parent="HBoxContainer"]
+layout_mode=2
+size_flags_horizontal=0
+text="×"
+theme_override_font_sizes/font_size=20
+custom_minimum_size=Vector2(40, 0)
+
+[connection signal="toggled" from="HBoxContainer/CheckBox" to="." method="_on_checkbox_toggled"]
+[connection signal="pressed" from="HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]

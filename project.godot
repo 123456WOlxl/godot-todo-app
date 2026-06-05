@@ -1,0 +1,23 @@
+[gd_resource type="ProjectSettings" format=3]
+
+_global_script_classes=[{
+"base": "Node",
+"class": &"TodoManager",
+"language": &"GDScript",
+"path": "res://scenes/TodoManager.gd"
+}]
+_global_script_class_files=["res://scenes/TodoManager.gd"]
+
+config_version=5
+
+[application]
+
+config/name="Godot Todo App"
+config/features=PackedStringArray("4.0", "forward_plus")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=600
+window/size/viewport_height=800
+window/handheld_mode/orientation="portrait"
